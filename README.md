@@ -12,3 +12,40 @@ General pipeline of a language (in place of terms compiler / interpreter) are :
 4. Intermediate Representation
 5. Optimisation
 6. Code Generation
+
+## Project
+### Build
+```
+./gradlew build
+```
+
+### Run
+```
+java -jar build/libs/lox.jar
+```
+
+## Scanning / Lexing
+Convert source sequence of characters to sequence of tokens.
+
+Example
+```
+# Source
+var userName = "Hello World";
+var age = 12;
+
+# Lexemes
+> var userName = "Hello World";
+VAR var null
+IDENTIFIER userName null
+EQUAL = null
+STRING "Hello World" Hello World
+SEMICOLON ; null
+EOF  null
+> var age = 12;
+VAR var null
+IDENTIFIER age null
+EQUAL = null
+NUMBER 12 12.0
+SEMICOLON ; null
+EOF  null
+```
