@@ -14,14 +14,23 @@ General pipeline of a language (in place of terms compiler / interpreter) are :
 6. Code Generation
 
 ## Project
+
+From Root Project
+
 ### Build
 ```
-./gradlew build
+./gradlew lox
 ```
 
 ### Run
 ```
 java -jar build/libs/lox.jar
+```
+
+### Testing
+```
+# https://docs.gradle.org/current/userguide/java_testing.html
+./gradlew test
 ```
 
 ## Scanning / Lexing

@@ -28,13 +28,29 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
-mainClassName = 'lox.Lox'
+class BuildCommandLine extends DefaultTask {
+    String mainClass
 
-jar {
-  manifest {
-    attributes(
-      'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-      'Main-Class': 'lox.Lox'
-    )
-  }
+    @TaskAction 
+    void commandLine() {
+        
+    }
+}
+
+task lox(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'lox.Lox'
+    }
+    baseName = 'lox'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+task generateAst(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'tool.GenerateAst'
+    }
+    baseName = 'generateAst'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
